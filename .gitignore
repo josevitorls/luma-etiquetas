@@ -1,0 +1,18 @@
+# Dependências
+node_modules/
+
+# Build
+dist/
+
+# SEGREDOS — nunca commitar
+.env
+.env.local
+.luma-session.json
+
+# PDFs gerados
+*.pdf
+
+# SO / editor
+.DS_Store
+Thumbs.db
+*.log
