@@ -18,7 +18,23 @@ listagem de convidados e geração de etiquetas de crachá em PDF (sob demanda).
   (copiando de `.env.example`) — **não** peça a senha no chat.
 - O login exige **e-mail + senha**. Contas só-OTP ou só-SSO não funcionam; avise o usuário.
 
-## Setup (uma vez)
+## Instalar a skill no Claude Code
+
+Copie a pasta `skill/` deste repo para as skills do seu Claude Code, com o nome
+`luma-etiquetas`:
+
+```bash
+# escopo do projeto (só neste repo):
+mkdir -p .claude/skills/luma-etiquetas && cp skill/SKILL.md .claude/skills/luma-etiquetas/
+
+# ou escopo global (todos os projetos):
+mkdir -p ~/.claude/skills/luma-etiquetas && cp skill/SKILL.md ~/.claude/skills/luma-etiquetas/
+```
+
+Rode os comandos `node dist/cli.js …` a partir da raiz deste repo (onde ficam
+`.env` e `.luma-session.json`).
+
+## Setup da ferramenta (uma vez)
 
 ```bash
 npm install && npm run build
