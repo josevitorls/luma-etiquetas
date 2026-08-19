@@ -208,6 +208,27 @@ Este repo inclui uma **skill de Claude Code** em [`skill/SKILL.md`](./skill/SKIL
 
 ---
 
+## 🔗 Projeto irmão
+
+Este projeto gera os crachás **em PDF**, para imprimir em qualquer impressora. Se a sua for uma **Niimbot B1** e você quiser imprimir direto, sem PDF no meio, o [**`josevitorls/niimprint-b1`**](https://github.com/josevitorls/niimprint-b1) faz a outra ponta: recebe um `.json` ou `.csv` e imprime na B1 por USB, uma etiqueta por vez, esperando a impressora confirmar antes da próxima.
+
+Os dois são independentes — o `niimprint-b1` não sabe nada sobre o Lu.ma. Para ligar um no outro, salve a lista de convidados num `.json` e aponte a CLI dele para o arquivo:
+
+```ts
+import { LumaClient, loadSession, extractBadgeFields } from 'luma-etiquetas'
+import { writeFileSync } from 'node:fs'
+
+const luma = new LumaClient(loadSession()!.cookieString)
+const guests = await luma.getAllGuests('evt-XXXXXXXX')
+writeFileSync('convidados.json', JSON.stringify(guests.map(extractBadgeFields), null, 2))
+```
+
+```bash
+py etiquetas.py print --in convidados.json --linha1 "{name}" --linha2 "{company} - {title}"
+```
+
+---
+
 ## 📄 Licença
 
 - **Código:** [MIT](./LICENSE).
